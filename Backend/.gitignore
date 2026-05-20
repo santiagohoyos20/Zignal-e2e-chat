@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Build output
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Keys & certificates
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.der
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Cache
+.npm
+.eslintcache
