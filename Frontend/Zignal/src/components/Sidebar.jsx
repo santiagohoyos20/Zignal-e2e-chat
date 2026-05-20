@@ -75,7 +75,7 @@ export default function Sidebar({ contacts, activeUser, activeContact, darkMode,
 
       {/* ── Footer ─────────────────────────────────────── */}
       <div className="side-foot">
-        <div className="av av-me" style={{ width: 34, height: 34, fontSize: 13 }}>
+        <div className={`av ${activeUser.av}`} style={{ width: 34, height: 34, fontSize: 13 }}>
           {activeUser.avatar}
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>

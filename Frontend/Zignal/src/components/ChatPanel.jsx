@@ -146,7 +146,7 @@ export default function ChatPanel({ activeUser, contact, messages, sessionEstabl
           return (
             <div key={msg.id} className={cls} style={{ marginTop: first ? 6 : 0 }}>
               <div
-                className={`msg-av ${isMe ? "av-me" : contact.av}`}
+                className={`msg-av ${isMe ? activeUser.av : contact.av}`}
                 style={{ width: 30, height: 30, fontSize: 11 }}
               >
                 {isMe ? activeUser.avatar : contact.avatar}
@@ -168,10 +168,6 @@ export default function ChatPanel({ activeUser, contact, messages, sessionEstabl
           );
         })}
 
-        {/* Typing indicator */}
-        <div className="typing">
-          <span /><span /><span />
-        </div>
 
         <div ref={bottomRef} />
       </div>

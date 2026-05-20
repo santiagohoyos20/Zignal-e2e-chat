@@ -317,7 +317,7 @@ html, body, #root {
 
 /* avatar gradients */
 .av-alice { background: linear-gradient(135deg, #5a7ad9, #2e4ab8); }
-.av-bob   { background: linear-gradient(135deg, #2b8a73, #14604e); }
+.av-bob   { background: linear-gradient(135deg, #22c55e, #16a34a); }
 .av-1     { background: linear-gradient(135deg, #3b6fd9, #1f4a9d); }
 .av-2     { background: linear-gradient(135deg, #2b8a73, #14604e); }
 .av-3     { background: linear-gradient(135deg, #5a7ad9, #2e4ab8); }

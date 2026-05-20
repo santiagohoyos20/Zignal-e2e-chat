@@ -6,13 +6,13 @@ export const users = [
 export const contacts = [
   {
     id: "alice", name: "Alice", avatar: "A", av: "av-alice",
-    online: true,  preview: "Great, no one can read this but us.",
-    time: "10:04", unread: 0, pinned: true, real: true,
+    online: true,  preview: "",
+    time: "", unread: 0, pinned: true, real: true,
   },
   {
     id: "bob", name: "Bob", avatar: "B", av: "av-bob",
-    online: false, preview: "The Double Ratchet is ready.",
-    time: "10:03", unread: 2, real: true,
+    online: false, preview: "",
+    time: "", unread: 2, real: true,
   },
   {
     id: "s", name: "Sara García", avatar: "S", av: "av-1",
@@ -47,18 +47,8 @@ export const contacts = [
 ];
 
 export const mockMessages = {
-  alice: [
-    { id: 1, sender: "bob",   text: "Hey Alice! I just initialized our X3DH session.", timestamp: "10:01" },
-    { id: 2, sender: "alice", text: "Perfect. I received your prekey bundle.", timestamp: "10:02" },
-    { id: 3, sender: "bob",   text: "The Double Ratchet is ready. This channel is now end-to-end encrypted.", timestamp: "10:03" },
-    { id: 4, sender: "alice", text: "Great, no one can read this but us.", timestamp: "10:04" },
-  ],
-  bob: [
-    { id: 1, sender: "alice", text: "Hey Bob! I just initialized our X3DH session.", timestamp: "10:01" },
-    { id: 2, sender: "bob",   text: "Perfect. I received your prekey bundle.", timestamp: "10:02" },
-    { id: 3, sender: "alice", text: "The Double Ratchet is ready. This channel is now end-to-end encrypted.", timestamp: "10:03" },
-    { id: 4, sender: "bob",   text: "Great, no one can read this but us.", timestamp: "10:04" },
-  ],
+  alice: [],
+  bob: [],
 };
 
 export const mockRatchetState = {
