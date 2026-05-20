@@ -31,7 +31,6 @@ export default function Sidebar({ contacts, activeUser, activeContact, darkMode,
           onChange={(e) => setSearch(e.target.value)}
           placeholder="buscar o empezar un chat"
         />
-        <kbd className="search-kbd">⌘K</kbd>
       </div>
 
       {/* ── Contact list ───────────────────────────────── */}
@@ -63,13 +62,11 @@ export default function Sidebar({ contacts, activeUser, activeContact, darkMode,
               </div>
 
               <div className="row-end">
-                {contact.unread > 0
-                  ? <div className="badge">{contact.unread}</div>
-                  : contact.pinned
-                    ? <span className="pin"><Pin size={14} /></span>
-                    : contact.muted
-                      ? <span className="pin"><BellOff size={14} /></span>
-                      : null}
+                {contact.pinned
+                  ? <span className="pin"><Pin size={14} /></span>
+                  : contact.muted
+                    ? <span className="pin"><BellOff size={14} /></span>
+                    : null}
               </div>
             </div>
           );

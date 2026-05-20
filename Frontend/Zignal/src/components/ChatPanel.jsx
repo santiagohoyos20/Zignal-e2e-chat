@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Phone, Video, Search, Info, Lock, Paperclip, Smile, Mic, Send, ArrowLeft } from "lucide-react";
+import { Phone, Video, Search, Info, Lock, Paperclip, Smile, Send, ArrowLeft } from "lucide-react";
 
 function groupMessages(messages) {
   return messages.map((msg, i, arr) => {
@@ -99,9 +99,7 @@ export default function ChatPanel({ activeUser, contact, messages, sessionEstabl
             )}
           </div>
           <div className="chat-head-status">
-            {contact.online
-              ? "en línea · cifrado e2e"
-              : `conversando como ${activeUser.name} · cifrado e2e`}
+            {contact.online ? "en línea" : "sin conexión"}
           </div>
         </div>
 
@@ -121,11 +119,11 @@ export default function ChatPanel({ activeUser, contact, messages, sessionEstabl
 
         {sessionEstablished && (
           <div className="e2ee-card">
-            <Lock size={13} />
-            Mensajes y llamadas cifrados extremo a extremo.{" "}
-            <a style={{ color: "inherit", textDecoration: "underline", cursor: "pointer" }}>
-              verifica el safety number →
-            </a>
+            <div className="e2ee-card-main">
+              <Lock size={12} />
+              Mensajes y llamadas cifrados extremo a extremo.
+            </div>
+            <a className="e2ee-card-link">verifica el safety number →</a>
           </div>
         )}
 
@@ -198,15 +196,9 @@ export default function ChatPanel({ activeUser, contact, messages, sessionEstabl
             <Smile size={17} />
           </button>
 
-          {input.trim() === "" ? (
-            <button className="icon-btn" style={{ width: 36, height: 36, flexShrink: 0 }} title="Audio">
-              <Mic size={17} />
-            </button>
-          ) : (
-            <button className="send" onClick={handleSend}>
-              <Send size={15} />
-            </button>
-          )}
+          <button className="send" onClick={handleSend} disabled={input.trim() === ""} style={{ opacity: input.trim() === "" ? 0.4 : 1 }}>
+            <Send size={15} />
+          </button>
         </div>
 
         <div className="composer-hint">
