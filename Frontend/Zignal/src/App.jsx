@@ -44,10 +44,6 @@ export default function App() {
     setActiveContact(null);
   }
 
-  function handleSelectContact(contact) {
-    setActiveContact(contact);
-  }
-
   function handleSendMessage(text) {
     if (!activeContact) return;
     const newMsg = {
@@ -71,17 +67,19 @@ export default function App() {
   }
 
   return (
-    <div className={`app${activeContact ? " contact-open" : ""}`}>
+    <div
+      className={`app grid max-md:grid-cols-1 max-md:relative grid-cols-[320px_1fr] h-screen overflow-hidden bg-bg text-app-text font-sans${activeContact ? " contact-open" : ""}`}
+    >
       <Sidebar
         contacts={contacts}
         activeUser={activeUser}
         activeContact={activeContact}
         darkMode={darkMode}
         onToggleDark={() => setDarkMode((d) => !d)}
-        onSelectContact={handleSelectContact}
+        onSelectContact={setActiveContact}
         onLogout={handleLogout}
       />
-      <div className="chat-area">
+      <div className="chat-area flex min-w-0 overflow-hidden relative">
         <ChatPanel
           activeUser={activeUser}
           contact={activeContact}
