@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import LoginScreen    from "./components/LoginScreen";
 import Sidebar        from "./components/Sidebar";
 import ChatPanel      from "./components/ChatPanel";
 import DiagnosticPanel from "./components/DiagnosticPanel";
+import { useChat }    from "./hooks/useChat";
 import { users, contacts, mockMessages, mockRatchetState } from "./data/mockData";
 
 export default function App() {
@@ -15,6 +16,21 @@ export default function App() {
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
   }, [darkMode]);
+
+  const handleIncoming = useCallback((msg) => {
+    const newMsg = {
+      id: Date.now(),
+      sender: msg.from,
+      text: msg.text,
+      timestamp: new Date().toLocaleTimeString("es-CO", { hour: "2-digit", minute: "2-digit" }),
+    };
+    setMessages((prev) => ({
+      ...prev,
+      [msg.from]: [...(prev[msg.from] ?? []), newMsg],
+    }));
+  }, []);
+
+  const { send } = useChat(activeUser?.id, handleIncoming);
 
   function handleLogin(user) {
     setActiveUser(user);
@@ -44,6 +60,7 @@ export default function App() {
       ...prev,
       [activeContact.id]: [...(prev[activeContact.id] ?? []), newMsg],
     }));
+    send(activeContact.id, text);
   }
 
   const chatMessages = activeContact ? (messages[activeContact.id] ?? []) : [];
