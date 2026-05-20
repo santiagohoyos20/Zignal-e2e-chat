@@ -21,39 +21,6 @@ app.get('/', (req, res) => {
   })
 })
 
-// ── WebSocket status ──────────────────────────────────────────
-app.get('/status', (req, res) => {
-  res.json({ connected: [...connections.keys()] })
-})
-
-// ── Pre-key bundle ────────────────────────────────────────────
-app.get('/prekeys/:userId', (req, res) => {
-  res.json({
-    userId: req.params.userId,
-    bundle: null,
-    message: 'Pre-key bundle endpoint — pendiente de implementar',
-  })
-})
-
-app.post('/prekeys/:userId', (req, res) => {
-  const { bundle } = req.body
-  res.status(201).json({
-    userId: req.params.userId,
-    received: bundle ?? null,
-    message: 'Pre-key upload endpoint — pendiente de implementar',
-  })
-})
-
-// ── Mensajes cifrados ─────────────────────────────────────────
-app.post('/messages/:to', (req, res) => {
-  const { ciphertext, header } = req.body
-  res.status(202).json({
-    to: req.params.to,
-    received: { ciphertext, header },
-    message: 'Message relay endpoint — pendiente de implementar',
-  })
-})
-
 // ── Error handler ─────────────────────────────────────────────
 app.use((err, req, res, next) => {
   console.error(err.stack)
