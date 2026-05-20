@@ -1,19 +1,14 @@
 import { useState } from "react";
-import { Search, Sun, Moon, LogOut, PenLine, Pin, BellOff } from "lucide-react";
+import { Search, Sun, Moon, LogOut, Pin, BellOff } from "lucide-react";
 
 export default function Sidebar({ contacts, activeUser, activeContact, darkMode, onToggleDark, onSelectContact, onLogout }) {
   const [search, setSearch] = useState("");
-  const [tab, setTab]       = useState("todos");
 
-  const peers      = contacts.filter((c) => c.id !== activeUser.id);
-  const totalUnread = peers.reduce((sum, c) => sum + (c.unread || 0), 0);
-  const groupCount  = peers.filter((c) => c.group).length;
+  const peers = contacts.filter((c) => c.id !== activeUser.id);
 
-  const filtered = peers.filter((c) => {
-    if (tab === "no-leidos" && !c.unread) return false;
-    if (tab === "grupos"    && !c.group)  return false;
-    return c.name.toLowerCase().includes(search.toLowerCase());
-  });
+  const filtered = peers.filter((c) =>
+    c.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <aside className="sidebar">
@@ -26,9 +21,6 @@ export default function Sidebar({ contacts, activeUser, activeContact, darkMode,
         <button className="icon-btn" onClick={onToggleDark} title="Alternar tema" style={{ marginLeft: "auto" }}>
           {darkMode ? <Sun size={16} /> : <Moon size={16} />}
         </button>
-        <button className="icon-btn" title="Nuevo chat" style={{ marginLeft: 0 }}>
-          <PenLine size={18} />
-        </button>
       </div>
 
       {/* ── Search ─────────────────────────────────────── */}
@@ -40,19 +32,6 @@ export default function Sidebar({ contacts, activeUser, activeContact, darkMode,
           placeholder="buscar o empezar un chat"
         />
         <kbd className="search-kbd">⌘K</kbd>
-      </div>
-
-      {/* ── Tabs ───────────────────────────────────────── */}
-      <div className="side-tabs">
-        <div className={`side-tab${tab === "todos"     ? " active" : ""}`} onClick={() => setTab("todos")}>
-          todos<span className="count">{peers.length}</span>
-        </div>
-        <div className={`side-tab${tab === "no-leidos" ? " active" : ""}`} onClick={() => setTab("no-leidos")}>
-          no leídos<span className="count">{totalUnread}</span>
-        </div>
-        <div className={`side-tab${tab === "grupos"    ? " active" : ""}`} onClick={() => setTab("grupos")}>
-          grupos<span className="count">{groupCount}</span>
-        </div>
       </div>
 
       {/* ── Contact list ───────────────────────────────── */}

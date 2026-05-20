@@ -1,4 +1,4 @@
-import { FlaskConical, ChevronRight, ChevronLeft } from "lucide-react";
+import { FlaskConical, ChevronRight } from "lucide-react";
 
 function DiagRow({ label, value }) {
   return (
@@ -9,52 +9,13 @@ function DiagRow({ label, value }) {
   );
 }
 
-export default function DiagnosticPanel({ ratchetState, activeUser, contact }) {
-  // collapsed state managed via CSS class swap — using React state
-  const [collapsed, setCollapsed] = React.useState(false);
-
-  if (collapsed) {
-    return (
-      <aside
-        className="diag-panel collapsed"
-        style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 14 }}
-      >
-        <button
-          className="icon-btn"
-          onClick={() => setCollapsed(false)}
-          title="Expandir diagnóstico"
-        >
-          <ChevronLeft size={15} />
-        </button>
-        <span
-          style={{
-            marginTop: 20,
-            fontSize: 10,
-            fontWeight: 700,
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: "var(--faint)",
-            writingMode: "vertical-rl",
-            transform: "rotate(180deg)",
-          }}
-        >
-          Diagnóstico
-        </span>
-      </aside>
-    );
-  }
-
+export default function DiagnosticPanel({ ratchetState, activeUser, contact, mobileOpen, onClose }) {
   return (
-    <aside className="diag-panel">
+    <aside className={`diag-panel${mobileOpen ? " mobile-open" : ""}`}>
       <div className="diag-head">
         <FlaskConical size={14} style={{ color: "var(--muted)", flexShrink: 0 }} />
         <span className="diag-title">Diagnóstico</span>
-        <button
-          className="icon-btn"
-          style={{ marginLeft: "auto" }}
-          onClick={() => setCollapsed(true)}
-          title="Colapsar"
-        >
+        <button className="icon-btn diag-close-btn" style={{ marginLeft: "auto" }} onClick={onClose} title="Cerrar">
           <ChevronRight size={15} />
         </button>
       </div>
@@ -88,5 +49,3 @@ export default function DiagnosticPanel({ ratchetState, activeUser, contact }) {
   );
 }
 
-// Make React available as bare reference inside the component (Vite bundles it)
-import React from "react";

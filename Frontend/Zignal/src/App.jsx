@@ -10,6 +10,7 @@ export default function App() {
   const [activeContact, setActiveContact] = useState(null);
   const [messages,      setMessages]      = useState(mockMessages);
   const [darkMode,      setDarkMode]      = useState(true);
+  const [showDiag,      setShowDiag]      = useState(false);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
@@ -53,7 +54,7 @@ export default function App() {
   }
 
   return (
-    <div className="app">
+    <div className={`app${activeContact ? " contact-open" : ""}`}>
       <Sidebar
         contacts={contacts}
         activeUser={activeUser}
@@ -63,18 +64,22 @@ export default function App() {
         onSelectContact={handleSelectContact}
         onLogout={handleLogout}
       />
-      <div style={{ display: "flex", minWidth: 0, overflow: "hidden" }}>
+      <div className="chat-area">
         <ChatPanel
           activeUser={activeUser}
           contact={activeContact}
           messages={chatMessages}
           sessionEstablished={ratchetState?.sessionEstablished ?? false}
           onSendMessage={handleSendMessage}
+          onBack={() => setActiveContact(null)}
+          onToggleDiag={() => setShowDiag((v) => !v)}
         />
         <DiagnosticPanel
           ratchetState={ratchetState}
           activeUser={activeUser}
           contact={activeContact}
+          mobileOpen={showDiag}
+          onClose={() => setShowDiag(false)}
         />
       </div>
     </div>

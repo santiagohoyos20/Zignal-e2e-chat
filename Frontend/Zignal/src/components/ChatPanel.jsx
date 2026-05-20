@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Phone, Video, Search, Info, Lock, Paperclip, Smile, Mic, Send } from "lucide-react";
+import { Phone, Video, Search, Info, Lock, Paperclip, Smile, Mic, Send, ArrowLeft } from "lucide-react";
 
 function groupMessages(messages) {
   return messages.map((msg, i, arr) => {
@@ -27,7 +27,7 @@ function DoubleCheck() {
   );
 }
 
-export default function ChatPanel({ activeUser, contact, messages, sessionEstablished, onSendMessage }) {
+export default function ChatPanel({ activeUser, contact, messages, sessionEstablished, onSendMessage, onBack, onToggleDiag }) {
   const [input, setInput] = useState("");
   const bottomRef   = useRef(null);
   const textareaRef = useRef(null);
@@ -79,6 +79,9 @@ export default function ChatPanel({ activeUser, contact, messages, sessionEstabl
     <div className="chat">
       {/* ── Header ──────────────────────────────────────── */}
       <div className="chat-head">
+        <button className="icon-btn back-btn" onClick={onBack} title="Volver">
+          <ArrowLeft size={18} />
+        </button>
         <div
           className={`av ${contact.av}${contact.online ? " online" : ""}`}
           style={{ width: 40, height: 40, fontSize: 15 }}
@@ -106,7 +109,7 @@ export default function ChatPanel({ activeUser, contact, messages, sessionEstabl
           <button className="icon-btn" title="Llamar"><Phone size={18} /></button>
           <button className="icon-btn" title="Videollamada"><Video size={18} /></button>
           <button className="icon-btn" title="Buscar"><Search size={18} /></button>
-          <button className="icon-btn" title="Info"><Info size={18} /></button>
+          <button className="icon-btn" title="Info" onClick={onToggleDiag}><Info size={18} /></button>
         </div>
       </div>
 
