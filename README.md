@@ -10,23 +10,23 @@ Zignal simula una conversación encriptada entre dos usuarios (**Alice** y **Bob
 
 ### Pantallas principales
 
-| Pantalla | Descripción |
-|---|---|
-| **Login** | Selección de identidad (Alice / Bob) con visualización de la llave pública de identidad |
-| **Sidebar** | Lista de contactos con búsqueda, indicadores de no leídos, fijados y silenciados |
-| **Chat** | Composición y recepción de mensajes, indicador E2E, verificación del número de seguridad |
-| **Diagnóstico** | Panel educativo con el estado de la sesión X3DH y las claves del Double Ratchet |
+| Pantalla        | Descripción                                                                              |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| **Login**       | Selección de identidad (Alice / Bob) con visualización de la llave pública de identidad  |
+| **Sidebar**     | Lista de contactos con búsqueda, indicadores de no leídos, fijados y silenciados         |
+| **Chat**        | Composición y recepción de mensajes, indicador E2E, verificación del número de seguridad |
+| **Diagnóstico** | Panel educativo con el estado de la sesión X3DH y las claves del Double Ratchet          |
 
 ---
 
 ## Stack
 
-| Capa | Tecnología |
-|---|---|
-| Frontend | React 19 + Vite 8 + Tailwind CSS 4 |
-| Backend | Node.js + Express 5 + WebSockets (`ws`) |
-| Íconos | lucide-react |
-
+| Capa        | Tecnología                              |
+| ----------- | --------------------------------------- |
+| Frontend    | React 19 + Vite 8 + Tailwind CSS 4      |
+| Cripografía | @noble 2.2.0                            |
+| Backend     | Node.js + Express 5 + WebSockets (`ws`) |
+| Íconos      | lucide-react                            |
 
 ## Cómo correr el proyecto
 
@@ -65,6 +65,11 @@ Luego abrir [http://localhost:5173](http://localhost:5173) en el navegador.
 
 > Para simular una conversación real, abrir la app en **dos pestañas o ventanas**: una con Alice y otra con Bob.
 
+### 3. Ejecutar pruebas
+
+```bash
+node tests/crypto.test.mjs
+```
 
 ## Arquitectura de comunicación
 
